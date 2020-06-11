@@ -1,8 +1,8 @@
 <template>
   <div id="home">
     <div>
-      <button>登录</button>
-      <button>注册</button>
+      <button @click="showLoginRegisterBox(1)">登录</button>
+      <button @click="showLoginRegisterBox(2)">注册</button>
       <div class="header">
         <h1>网页标题</h1>
         <img src="./assets/logo.png" alt />
@@ -37,7 +37,7 @@
       </div>
       <hr />
     </div>
-    <LoginBox></LoginBox>
+    <LoginBox v-if="boxtarget" :target="boxtarget" @hideBox="hideLoginRegisterBox"></LoginBox>
     <div class="foot">Copyright © 2020 Dweb工作室</div>
   </div>
 </template>
@@ -53,7 +53,8 @@ export default {
     return {
       menuList: [],
       choosed: 1,
-      choosed_text:'Django后端'
+      choosed_text:'Django后端',
+      boxtarget:0
     };
   },
   mounted() {
@@ -82,6 +83,14 @@ export default {
       }
       //进行id传参跳转
       this.$router.push({path:'/',query:{menuId:id}})
+    },
+    //展示登录注册框体
+    showLoginRegisterBox(value){
+      this.boxtarget = value
+    },
+    //隐藏父组件
+    hideLoginRegisterBox(){
+      this.boxtarget = 0
     }
   }
 };

@@ -1,5 +1,5 @@
 <template>
-  <div id="login">
+  <div id="login" @click.self="hideSelf">
     <div id="loginbox">
       <div class="form">
         <div class="item">
@@ -11,7 +11,12 @@
           <div class="span">密码：</div>
           <input v-model="password" type="text" placeholder="输入密码" />
         </div>
-        <button @click="toLogin">登录</button>
+        <div v-if="target==2" class="item">
+          <div class="span">重复密码：</div>
+          <input v-model="password2" type="text" placeholder="再次输入密码" />
+        </div>
+        <button v-if="target==1" @click="toLogin">登录</button>
+        <button v-if="target==2" @click="toRegister">注册</button>
       </div>
     </div>
   </div>
@@ -25,13 +30,26 @@ import axios from "axios";
 import Qs from "qs";
 export default {
   name: "LoginBox",
+  props:['target'],
   data() {
     return {
       username: "",
-      password: ""
+      password: "",
+      password2: ""
     };
   },
+  mounted(){
+    console.log(this.target)
+  },
   methods: {
+    hideSelf(){
+      this.$emit("hideBox")
+    },
+    //注册
+    toRegister(){
+      
+    },
+    //登录
     toLogin() {
       console.log(this.username, this.password);
       var username = this.username;
@@ -79,6 +97,7 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
+  background: #00000020;
 }
 #loginbox {
   width: 300px;
