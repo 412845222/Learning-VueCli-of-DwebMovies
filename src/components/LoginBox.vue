@@ -172,6 +172,7 @@ export default {
             default:
               console.log(res.data.token);
               window.localStorage.setItem('token',res.data.token)
+              window.localStorage.setItem('userinfo',res.data.userinfo)
               alert("登陆成功");
               window.location.reload()
           }
