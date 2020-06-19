@@ -28,7 +28,7 @@
           <p>{{ choosed_text }}</p>
 
           <hr />
-          <router-view />
+          <router-view @hideBox="hideLoginRegisterBox" @changeUI="changeLoginTye" />
         </div>
       </div>
       <hr />
@@ -104,6 +104,10 @@ export default {
     //隐藏父组件
     hideLoginRegisterBox() {
       this.boxtarget = 0;
+    },
+    //修改登录状态
+    changeLoginTye(bool){
+      this.loginType = bool
     }
   }
 };
