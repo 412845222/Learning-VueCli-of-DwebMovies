@@ -172,9 +172,16 @@ export default {
             default:
               console.log(res.data.token);
               window.localStorage.setItem('token',res.data.token)
-              window.localStorage.setItem('userinfo',res.data.userinfo)
               alert("登陆成功");
-              window.location.reload()
+              //开始存储vuex中的用户信息
+              var userinfo = res.data.userinfo
+              console.log(userinfo)
+              this.$store.commit('editUserinfo',userinfo)
+
+              if (this.$route.path != "/userinfo") {
+                this.$router.push({path:'/userinfo'})
+              }
+              // window.location.reload()
           }
         });
       } else {

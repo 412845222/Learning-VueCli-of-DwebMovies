@@ -11,6 +11,11 @@ Vue.use(VueRouter)
     component: () => import('../views/UserList.vue')
   },
   {
+    path: '/userinfo',
+    name: 'UserInfo',
+    component: () => import('../views/Userinfo.vue')
+  },
+  {
     path: '/about',
     name: 'About',
     // route level code-splitting
