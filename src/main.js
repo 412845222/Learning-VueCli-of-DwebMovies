@@ -5,6 +5,10 @@ import '../src/assets/css/mystyle.css'
 import store from './store'
 
 Vue.config.productionTip = false
+
+export const evetBus = new Vue();
+
+
 new Vue({
   router,
   store,
